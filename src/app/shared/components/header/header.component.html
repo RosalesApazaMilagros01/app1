@@ -5,9 +5,14 @@
   <ion-back-button *ngIf="backButton"   [defaultHref]="backButton" ></ion-back-button>
 </ion-buttons>
 
+<ion-button  *ngIf="isModal" >
+  CLICK ME
+  <ion-icon name="close-circle-outline">
 
+  </ion-icon>
+ </ion-button>
 
 <ion-title>
   <strong>{{title}}</strong>
-  <div class ="admin">GRADUA GILDA</div>
+  <div class ="admin">WEBDESIGNS-PERÚ</div>
   </ion-title> </ion-toolbar></ion-header>

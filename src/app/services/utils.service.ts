@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import {LoadingController, ToastController, ToastOptions } from '@ionic/angular';
+import {LoadingController, ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
 
 import {Router} from '@angular/router';
 
@@ -12,6 +12,7 @@ export class UtilsService {
   loadingCtrl = inject(LoadingController) ;
 
   toastCtrl= inject(ToastController);
+  modalCtrl= inject(ModalController);
 router= inject(Router)
 
 
@@ -23,9 +24,9 @@ router= inject(Router)
 
   });
 
-  //====toastr
+ 
 
-}
+} //====toastr
 async presentToast(opts?:ToastOptions){
   const toast = await this.toastCtrl.create(opts);
   toast.present();
@@ -54,6 +55,16 @@ return this.router.navigateByUrl(url);
   }
   
 
+ //==== modal
 
+ async presentModal(opts: ModalOptions ){
+  const modal = await this.modalCtrl.create(opts);
+  await modal.present();
+  const {data} = await modal.onWillDismiss();
+  if(data) return data;
+}
 
+dismissModal(data?: any){
+ return this.modalCtrl.dismiss(data); 
+}
 }
